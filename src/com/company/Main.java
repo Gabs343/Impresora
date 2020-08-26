@@ -22,7 +22,7 @@ public class Main {
 
         //ACCIONES
         hp.imprimir(0);
-
+        hp.recargarHojas(200);
         pendrive.conectar();
         if(pendrive.getEstado()){
             hp.imprimirDispositivo(pendrive, 0);
@@ -34,6 +34,7 @@ public class Main {
 
         hp.escanear(archivo1);
         hp.verDispositivo(pendrive);
+        hp.verMemoria();
 
     }
 }
