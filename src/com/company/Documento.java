@@ -17,5 +17,10 @@ public class Documento {
         return this.nombre;
     }
 
+    public int getHojasCantidad(){
+        return this.hojasCantidad;
+    }
+
+
 
 }
