@@ -39,6 +39,14 @@ public class Impresora {
         docI.add(documento);
     }
 
+    public void removeDoc(int numero){
+        docI.remove(numero);
+    }
+
+    public void removeDocDisp(Dispositivo dispositivo, int numero){
+        dispositivo.docD.remove(numero);
+    }
+
     public void escanear(Documento documento){
         System.out.println("Escaneando el documento " + documento.getNombre());
         docI.add(documento);
@@ -50,7 +58,7 @@ public class Impresora {
             if(docI.get(i) == null){
                 System.out.println("VACIO");
             }else{
-                System.out.println(docI.get(i).getNombre());
+                System.out.println(i + ". " + docI.get(i).getNombre());
             }
         }
     }
@@ -68,6 +76,10 @@ public class Impresora {
 
     public void recargarHojas(int numero){
         hojasCantidad += numero;
+    }
+
+    public void moverArchivo(int numero, Dispositivo dispositivo){
+        dispositivo.docD.add(docI.get(numero));
     }
 
 }

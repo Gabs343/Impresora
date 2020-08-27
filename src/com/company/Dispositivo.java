@@ -6,7 +6,6 @@ public class Dispositivo {
     private String tipo;
     private int memoria;
     private boolean estado;
-    //private Documento[] documentos = new Documento[3];
     ArrayList<Documento> docD = new ArrayList<Documento>();
 
     public Dispositivo(String tipo, int memoria, boolean estado){
@@ -42,5 +41,6 @@ public class Dispositivo {
     public String getTipo(){
         return this.tipo;
     }
+
 
 }

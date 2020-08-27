@@ -36,5 +36,10 @@ public class Main {
         hp.verDispositivo(pendrive);
         hp.verMemoria();
 
+        hp.moverArchivo(0, pendrive);
+        hp.verDispositivo(pendrive);
+
+
+
     }
 }
