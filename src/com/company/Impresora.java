@@ -39,47 +39,72 @@ public class Impresora {
         docI.add(documento);
     }
 
-    public void removeDoc(int numero){
+    public void removeDoc(int numero, Documento documento){
         docI.remove(numero);
+        memoria += documento.getPeso();
     }
 
     public void removeDocDisp(Dispositivo dispositivo, int numero){
         dispositivo.docD.remove(numero);
+        System.out.println(dispositivo.sumaMemoria(numero));
     }
 
     public void escanear(Documento documento){
         System.out.println("Escaneando el documento " + documento.getNombre());
         docI.add(documento);
+        memoria -= documento.getPeso();
     }
 
     public void verMemoria(){
         System.out.println("Archivos disponibles en la memoria");
         for (int i = 0; i < docI.size(); i++){
-            if(docI.get(i) == null){
-                System.out.println("VACIO");
-            }else{
-                System.out.println(i + ". " + docI.get(i).getNombre());
-            }
+            System.out.println(i + ". " + docI.get(i).getNombre());
+            memoria -= docI.get(i).getPeso();
         }
+
+        System.out.println("MEMORIA DISPONIBLE " + memoria);
     }
 
     public void verDispositivo(Dispositivo dispositivo){
         System.out.println("Archivos disponibles en el dispositivo " + dispositivo.getTipo());
+        int memoriaD = 0;
         for (int i = 0; i < dispositivo.getDocumentos(); i++){
-            if(dispositivo.docD.get(i) == null){
-                System.out.println("VACIO");
-            }else{
-                System.out.println(dispositivo.getDocumento(i).getNombre());
-            }
+            System.out.println(i + ". " + dispositivo.getDocumento(i).getNombre());
+            memoriaD += dispositivo.getDocumento(i).getPeso();
         }
+        System.out.println("MEMORIA DISPONIBLE DEL DISPOSITIVO " + (dispositivo.getMemoria() - memoriaD));;
     }
 
     public void recargarHojas(int numero){
         hojasCantidad += numero;
+        System.out.println("INSERTASTE " + numero + " HOJAS");
     }
 
     public void moverArchivo(int numero, Dispositivo dispositivo){
-        dispositivo.docD.add(docI.get(numero));
+        if(dispositivo.getEstado()){
+            if(dispositivo.getMemoria() < docI.get(numero).getPeso()){
+                System.out.println("NO HAY SUFICIENTE ESPACIO EN EL DISPOSITIVO");
+            }else{
+                dispositivo.docD.add(docI.get(numero));
+                System.out.println(dispositivo.restaMemoria(docI.get(numero).getPeso()));
+            }
+        }else{
+            System.out.println("NO HAY UN DISPOSITIVO CONECTADO");
+        }
+
+    }
+
+    public void traerArchivo(int numero, Dispositivo dispositivo){
+        if(dispositivo.getEstado()){
+            if(memoria < dispositivo.getDocumento(numero).getPeso()){
+                System.out.println("NO HAY SUFICIENTE ESPACIO");
+            }else{
+                docI.add(dispositivo.docD.get(numero));
+                memoria -= dispositivo.getDocumento(numero).getPeso();
+            }
+        }else{
+            System.out.println("NO HAY UN DISPOSITIVO CONECTADO");
+        }
     }
 
 }

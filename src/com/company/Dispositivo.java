@@ -30,6 +30,19 @@ public class Dispositivo {
         return estado;
     }
 
+    public int restaMemoria(int numero){
+        return memoria -= numero;
+    }
+
+    public int sumaMemoria(int numero){
+        memoria += docD.get(numero).getPeso();
+        return memoria;
+    }
+
+    public int getMemoria(){
+        return memoria;
+    }
+
     public void conectar(){
         estado = true;
     }
