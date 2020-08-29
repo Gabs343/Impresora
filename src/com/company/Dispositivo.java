@@ -1,10 +1,12 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class Dispositivo {
     private String tipo;
     private int memoria;
     private boolean estado;
-    private Documento[] documentos = new Documento[3];
+    ArrayList<Documento> docD = new ArrayList<Documento>();
 
     public Dispositivo(String tipo, int memoria, boolean estado){
         this.tipo = tipo;
@@ -12,20 +14,33 @@ public class Dispositivo {
         this.estado = estado;
     }
 
-    public void setDocumento(int numero, Documento documento){
-        documentos[numero] = documento;
+    public void setDocumento(Documento documento){
+        docD.add(documento);
     }
 
     public Documento getDocumento(int numero){
-        return documentos[numero];
+        return docD.get(numero);
     }
 
     public int getDocumentos(){
-        return documentos.length;
+        return docD.size();
     }
 
     public boolean getEstado(){
         return estado;
+    }
+
+    public int restaMemoria(int numero){
+        return memoria -= numero;
+    }
+
+    public int sumaMemoria(int numero){
+        memoria += docD.get(numero).getPeso();
+        return memoria;
+    }
+
+    public int getMemoria(){
+        return memoria;
     }
 
     public void conectar(){
@@ -39,5 +54,6 @@ public class Dispositivo {
     public String getTipo(){
         return this.tipo;
     }
+
 
 }

@@ -21,6 +21,10 @@ public class Documento {
         return this.hojasCantidad;
     }
 
+    public int getPeso(){
+        return peso;
+    }
+
 
 
 }
